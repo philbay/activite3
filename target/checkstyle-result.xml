@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.18">
+<file name="/home/philemon/Documents/C306-Genie Logiciel/sudoku/src/main/java/Grille.java">
+<error line="0" severity="error" message="Manquant fichier package-info.java." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+</file>
+<file name="/home/philemon/Documents/C306-Genie Logiciel/sudoku/src/main/java/GrilleImpl.java">
+<error line="32" column="1" severity="error" message="La méthode &apos;getDimension&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="47" severity="error" message="La ligne excède 80 caractères." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="47" column="1" severity="error" message="La méthode &apos;setValue&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="52" severity="error" message="La ligne excède 80 caractères." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="63" column="1" severity="error" message="La méthode &apos;getValue&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="73" column="1" severity="error" message="La méthode &apos;complete&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="94" severity="error" message="La ligne excède 80 caractères." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="94" column="1" severity="error" message="La méthode &apos;possible&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="99" severity="error" message="La ligne excède 80 caractères." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="119" column="1" severity="error" message="La méthode &apos;possibleContains&apos; n&apos;est pas conçue pour être dérivée - il faut la déclarer abstraite, finale ou la laisser vide." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+</file>
+</checkstyle>

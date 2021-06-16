@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GrilleImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DevoirC306</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">GrilleImpl.java</span></div><h1>GrilleImpl.java</h1><pre class="source lang-java linenums">import java.util.ArrayList;
+import java.util.List;
+
+/** Implementation d'une grille. */
+public class GrilleImpl implements Grille {
+
+/** Width represente la largeur de la grille. */
+<span class="fc" id="L8">private int width = 0;</span>
+/** height represente la hauteur de la grille. */
+<span class="fc" id="L10">private int height = 0;</span>
+/** definition du tabbleau qui represente la grille. */
+<span class="fc" id="L12">private char[][] lagrille = null;</span>
+
+/** Constructeur de GrilleImpl.
+* Il initialise la grille avec les dimensions
+* fournies par le client
+* @param wid largeur de la grille
+* @param hei hauteur de la grille
+*/
+<span class="fc" id="L20">public GrilleImpl(final int wid, final int hei) {</span>
+<span class="fc" id="L21">    this.width = wid;</span>
+<span class="fc" id="L22">    this.height = hei;</span>
+<span class="fc" id="L23">    this.lagrille = new char[wid][hei];</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    for (int i = 0; i &lt; this.width; i++) {</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int j = 0; j &lt; this.height; j++) {</span>
+<span class="fc" id="L26">            lagrille[i][j] = EMPTY;</span>
+        }
+    }
+<span class="fc" id="L29">}</span>
+
+/** @return largeur/hauteur de la grille. */
+public int getDimension() {
+<span class="fc" id="L33">    return this.width / this.height;</span>
+}
+/**
+* Affecte une valeur dans la grille.
+* @param x position x dans la grille
+* @param y position y dans la grille
+* @param value a mettre dans la case
+* @throws IllegalArgumentException si x ou y sont hors bornes (0-8)
+* @throws IllegalArgumentException si la valeur est interdite aux vues des
+* @return 0 si l'insertion de la valeur reussie
+* autres valeurs de la grille
+* @throws IllegalArgumentException si value n'est pas
+* un caractere autorise ('1',...,'9')
+*/
+public int setValue(final int x, final int y, final char value) throws IllegalArgumentException {
+<span class="pc bpc" id="L48" title="4 of 8 branches missed.">    if (x &gt; this.width || y &gt; this.height || x &lt; 0 || y &lt; 0) {</span>
+<span class="nc" id="L49">        throw new IllegalArgumentException(&quot;x or y hors bornes&quot;);</span>
+    }
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">    if (!possibleContains(value)) {</span>
+<span class="nc" id="L52">        throw new IllegalArgumentException(&quot;value n'est pas un caractere authorise&quot;);</span>
+    }
+<span class="fc" id="L54">    this.lagrille[x - 1][y - 1] = value;</span>
+<span class="fc" id="L55">    return 0;</span>
+}
+/** Recupere une valeur de la grille.
+* @param x position x dans la grille
+* @param y position y dans la grille
+* @return valeur dans la case x,y
+* @throws IllegalArgumentException si x ou y sont hors bornes (0-8)
+*/
+public char getValue(final int x, final int y) throws IllegalArgumentException {
+<span class="pc bpc" id="L64" title="4 of 8 branches missed.">    if (x &gt; this.width || y &gt; this.height || x &lt; 0 || y &lt; 0) {</span>
+<span class="nc" id="L65">        throw new IllegalArgumentException(&quot;x or y hors bornes&quot;);</span>
+    }
+<span class="fc" id="L67">    return this.lagrille[x - 1][y - 1];</span>
+}
+/**
+* Test si une grille est terminee.
+* @return true si la grille est complete
+*/
+public boolean complete() {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    for (int i = 0; i &lt; this.width; i++) {</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (int j = 0; j &lt; this.height; j++) {</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            if (lagrille[i][j] == EMPTY) {</span>
+<span class="nc" id="L77">                return false;</span>
+            }
+        }
+    }
+<span class="fc" id="L81">    return true;</span>
+}
+/**
+* Test si une valeur est possible dans la grille par rapport
+* a ce qu'elle contient deja contient deja.
+* @param x position x dans la grille
+* @param y position y dans la grille
+* @param value valeur a mettre dans la case
+* @return true si l'insertion de la valeur est possible
+* @throws IllegalArgumentException si x ou y sont hors bornes (0-8)
+* @throws IllegalArgumentException si value n'est pas
+* un caractere autorise ('1',...,'9')
+*/
+public boolean possible(final int x, final int y, final char value) throws IllegalArgumentException {
+<span class="pc bpc" id="L95" title="4 of 8 branches missed.">    if (x &gt; this.width || y &gt; this.height || x &lt; 0 || y &lt; 0) {</span>
+<span class="nc" id="L96">        throw new IllegalArgumentException(&quot;x or y hors bornes&quot;);</span>
+    }
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">    if (!possibleContains(value)) {</span>
+<span class="nc" id="L99">        throw new IllegalArgumentException(&quot;value n'est pas un caractere authorise&quot;);</span>
+    }
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">for (int i = 0; i &lt; this.width; i++) {</span>
+<span class="pc bpc" id="L103" title="3 of 4 branches missed.">    if ((lagrille[i][y - 1] == value) &amp;&amp; ((x - 1) != i)) {</span>
+<span class="nc" id="L104">        return false;</span>
+    }
+}
+
+<span class="fc bfc" id="L108" title="All 2 branches covered.">for (int j = 0; j &lt; this.height; j++) {</span>
+<span class="pc bpc" id="L109" title="3 of 4 branches missed.">    if ((lagrille[x - 1][j] == value) &amp;&amp; ((y - 1) != j)) {</span>
+<span class="nc" id="L110">        return false;</span>
+    }
+}
+<span class="fc" id="L113">return true;</span>
+}
+/**
+* verifie si @param value est un caractere autorise.
+* @return true si le caractere est autorise
+*/
+public boolean possibleContains(final char value) {
+<span class="fc" id="L120">    List possibleAL = new ArrayList();</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">    for (int i = 0; i &lt; POSSIBLE.length; i++) {</span>
+<span class="fc" id="L122">        possibleAL.add(POSSIBLE[i]);</span>
+    }
+<span class="pc bpc" id="L124" title="3 of 4 branches missed.">    return (possibleAL.contains(value) || value == EMPTY);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
